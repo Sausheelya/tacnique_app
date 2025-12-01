@@ -1,0 +1,63 @@
+<div class="container">
+  <div class="row align-items-center my-5">
+    <div class="col-md-6">
+      <!-- Title: Quiz -->
+      <%# <h1 class="display-4 mb-3">Quiz</h1> %>
+
+      <!-- Prototype message -->
+      <p class="lead mb-2">
+        This is a prototype by <strong>Tacnique</strong>, built by <strong>Sausheelya</strong>.
+      </p>
+      <p class="mb-4 text-muted">
+        Let’s begin the quiz and see how much you know.
+      </p>
+
+      <!-- Primary action: Start Quiz -->
+      <% if @quizzes.any? %>
+        <%= link_to "Start Quiz",
+                    take_quiz_path(@quizzes.first),
+                    class: "btn btn-primary btn-lg me-2" %>
+      <% else %>
+        <p class="text-muted">No quizzes are available yet.</p>
+      <% end %>
+    </div>
+
+    <!-- Hero image (index page only) -->
+    <div class="col-md-6 text-center">
+      <%= image_tag "tacnique-logo.svg",
+                    alt: "Quiz illustration",
+                    class: "img-fluid rounded shadow-sm" %>
+    </div>
+  </div>
+
+  <!-- List of all quizzes -->
+  <div class="row mt-4">
+    <div class="col-12 mb-3">
+      <h2 class="h4">Available Quizzes</h2>
+    </div>
+
+    <% if @quizzes.any? %>
+      <% @quizzes.each do |quiz| %>
+        <div class="col-md-4 mb-4">
+          <div class="card h-100">
+            <div class="card-body">
+              <h5 class="card-title"><%= quiz.title %></h5>
+              <p class="card-text text-muted">
+                <%= pluralize(quiz.questions.count, "question") %>
+              </p>
+              <%= link_to "Take this Quiz",
+                          take_quiz_path(quiz),
+                          class: "btn btn-outline-primary" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    <% else %>
+      <div class="col-12">
+        <div class="alert alert-info">
+          No quizzes available. You can add one from the Admin panel.
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

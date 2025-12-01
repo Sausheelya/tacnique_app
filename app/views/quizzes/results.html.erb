@@ -1,0 +1,30 @@
+<div class="container mt-5">
+  <div class="row align-items-start">
+    <!-- Left: score + button -->
+    <div class="col-md-6 text-center mb-4">
+      <h2 class="mb-3"><%= @quiz.title %></h2>
+
+      <p class="fs-4 mb-1">
+        Score: <strong><%= @score %> / <%= @total %></strong>
+      </p>
+      <p class="text-muted mb-4">
+        (<%= @percent %>%)
+      </p>
+
+      <%= link_to 'Back to quizzes',
+                  root_path,
+                  class: 'btn btn-primary btn-lg' %>
+    </div>
+
+    <!-- Right: logo / image -->
+    <div class="col-md-6 text-center">
+      <%= image_tag "tacnique-logo.svg",
+                    alt: "Tacnique logo",
+                    class: "img-fluid rounded shadow-sm mb-3" %>
+
+      <p class="text-muted">
+        Prototype by <strong>Tacnique</strong>, built by <strong>Sausheelya</strong>.
+      </p>
+    </div>
+  </div>
+</div>
